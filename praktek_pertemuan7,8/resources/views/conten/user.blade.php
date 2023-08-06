@@ -37,7 +37,7 @@
               <span class="text-secondary text-xs font-weight-bold">{{ Carbon\Carbon::parse($user->created_at)->format('d F Y') }}</span>
             </td>
             <td class="align-middle">
-              <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
+              <a href="/users/{{ $user->id/edit}};" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
                 Edit
               </a>
             </td>

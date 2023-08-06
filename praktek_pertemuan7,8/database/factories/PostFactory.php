@@ -21,7 +21,8 @@ class PostFactory extends Factory
             'titel' => fake()->sentence(),
             'description' => fake()->paragraph(),
             'author' => fake()->name(),
-            'category_id'=> fake()->numberBetween(1, 9)
+            'category_id'=> fake()->numberBetween(1, 9),
+            'user_id'=> fake()->numberBetween(1, 9)
         ];
     }
 }

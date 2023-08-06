@@ -17,7 +17,6 @@ return new class extends Migration
             $table->string('description');
             $table->string('author');
             $table->foreignId('category_id');
-            $table->foreignId('user_id');
             $table->timestamps();
         });
     }
@@ -27,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('posts');
+        Schema::dropIfExists('post');
     }
 };

@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\categoryController;
+use App\Http\Controllers\userController;
 use App\Models\post;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
@@ -17,18 +19,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     $data=["title"=> "dashboard", 
-        "user"=>["name"=>"<h5>Watashi</h5>",
+        "user"=>["name"=>"Watashi",
         "email"=> "Lazuardi@gmail.com",   
         ]];
     return view('conten.dashboard', $data);
 });
 
-Route::get('/user', function () {
-        return view('conten.user', [
-            "title" => "Users",
-            "users" => User::all(),
-            "posts" => post::all(),
-            
-        ]);
-});
-
+Route::get('/user', [userController::class, 'index']);
+Route::get('/user/[id]/edit', userController::class, 'edit');
+Route::resource('/categories', categoryController::class);

@@ -14,5 +14,6 @@ class post extends Model
         "description",
         "author",
         "category_id",
+        "user_id",
     ];
 }
