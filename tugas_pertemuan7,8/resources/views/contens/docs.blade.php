@@ -35,6 +35,11 @@
                         Download CSV
                     </a>
                 </div>
+                <div class="col-auto">						    
+                    <a class="btn app-btn-secondary" href="/users/create">
+                        Add Data
+                    </a>
+                </div>
             </div><!--//row-->
         </div><!--//table-utilities-->
     </div><!--//col-auto-->
@@ -45,7 +50,11 @@
     <a class="flex-sm-fill text-sm-center nav-link active" id="orders-all-tab" data-bs-toggle="tab" href="#orders-all" role="tab" aria-controls="orders-all" aria-selected="true">Users</a>
     <a class="flex-sm-fill text-sm-center nav-link"  id="orders-paid-tab" data-bs-toggle="tab" href="#orders-paid" role="tab" aria-controls="orders-paid" aria-selected="false">Post</a>
 </nav>
-
+@if (session()->has('success'))
+        <div class="alert alert-success" role="alert">
+          {{ session('success')}}
+          </div>
+        @endif
 
 <div class="tab-content" id="orders-table-tab-content">
     <div class="tab-pane fade show active" id="orders-all" role="tabpanel" aria-labelledby="orders-all-tab">
@@ -63,13 +72,14 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($users as $item)
+                            @foreach ($users as $user)
                             <tr>
                                 <td class="cell">{{ $loop->index }}</td>
-                                <td class="cell"><span class="truncate">{{ $item->name }}</span></td>
-                                <td class="cell">{{ $item->email }}</td>
-                                <td class="cell">{{ \Carbon\Carbon::parse($item->created_at)->format('d F Y') }}</td>
-                                <td class="cell"><a class="btn-sm app-btn-secondary" href="#">View</a></td>
+                                <td class="cell"><span class="truncate">{{ $user->name }}</span></td>
+                                <td class="cell">{{ $user->email }}</td>
+                                <td class="cell">{{ \Carbon\Carbon::parse($user->created_at)->format('d F Y') }}</td>
+                                <td class="cell"><a class="btn-sm app-btn-secondary" href="/users/{{ $user->id }}/edit">Edit</a></td>
+                                <td class="cell"><a class="btn-sm app-btn-secondary" href="/users/{{ $user->id }}/show">Detail</a></td>
                             </tr>
                             @endforeach
                         </tbody>
@@ -111,14 +121,14 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($posts as $item)
+                            @foreach ($posts as $user)
                             <tr>
                                 <td class="cell">{{ $loop->index }}</td>
-                                <td class="cell"><span class="truncate">{{ $item->title }}</span></td>
-                                <td class="cell">{{ $item->description }}</td>
-                                <td class="cell"><span class="badge bg-success">{{ $item->author }}</span></td>
-                                <td class="cell">{{ \Carbon\Carbon::parse($item->created_at)->format('d F Y') }}</td>
-                                <td class="cell"><a class="btn-sm app-btn-secondary" href="#">View</a></td>
+                                <td class="cell"><span class="truncate">{{ $user->title }}</span></td>
+                                <td class="cell">{{ $user->description }}</td>
+                                <td class="cell"><span class="badge bg-success">{{ $user->author }}</span></td>
+                                <td class="cell">{{ \Carbon\Carbon::parse($user->created_at)->format('d F Y') }}</td>
+                                <td class="cell"><a class="btn-sm app-btn-secondary" href="#">Edit</a></td>
                             </tr>
                             @endforeach
                         </tbody>

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\categoryController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -23,4 +24,11 @@ Route::get('/', function () {
 });
 
 
+Route::get('/users/create', [UserController::class, 'create']);
 Route::get('/users', [UserController::class, 'index']);
+Route::post('/users', [UserController::class, 'store']);
+Route::get('/users/{id}/edit', [UserController::class, 'edit']);
+Route::get('/users/{id}/show', [UserController::class, 'show']);
+Route::put('/users/{id}', [UserController::class, 'update']);
+
+
